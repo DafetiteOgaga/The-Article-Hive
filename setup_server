@@ -29,8 +29,16 @@ else
 fi
 echo ""
 
-# # exit
-# exit 0
+# install dependencies
+requirement_file_path="$(find $HOME -name "requirements.txt")"
+echo "requirement_file_path: $requirement_file_path"
+requirement_file_path="${requirement_file_path%/*}"
+cd "$requirement_file_path"
+pip install -r requirements.txt
+echo ""
+echo "##### installed dependencies ..."
+echo ""
+sleep 2
 
 # making and migrating migrations
 maka_and_migrate="$(find $HOME -name "manage.py")"
@@ -50,14 +58,4 @@ python manage.py collectstatic --noinput
 sleep 2
 echo "##### static files collected ..."
 echo ""
-sleep 2
-
-# install dependencies
-requirement_file_path="$(find $HOME -name "requirements.txt")"
-echo "requirement_file_path: $requirement_file_path"
-requirement_file_path="${requirement_file_path%/*}"
-cd "$requirement_file_path"
-pip install -r requirements.txt
-echo ""
-echo "##### installed dependencies ..."
-echo ""
+# sleep 2
