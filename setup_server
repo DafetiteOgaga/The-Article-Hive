@@ -18,6 +18,7 @@ sleep 2
 
 # install django
 django_version=$(django-admin --version 2>&1)
+echo "##### django version exit statue: $django_version"
 if [[ $$? != 0 ]]; then
 	echo "installing django ..."
 	pip install django
