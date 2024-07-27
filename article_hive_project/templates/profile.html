@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block section %}
+{% with "" as empty %}
+<section class="profile">
+	<div>
+		<div class="profile-img-container right-anime small-container">
+			<img src="{{ member.profile_picture.url|default:empty }}" alt="profile photo" />
+			<h1>{{ member.first_name|default:empty|capfirst }} {{ member.middle_name|default:empty|capfirst }} {{ member.last_name|default:empty|capfirst }}</h1>
+			{% if user.is_authenticated %}
+			<div class="click-anime">
+				<div class="profile-buttons">
+					<a href="{% url 'profile_update' user.id %}">
+						<button>Update Profile</button>
+					</a>
+					<a href="{% url 'article_form' %}">
+						<button>Post an Article</button>
+					</a>
+					<a href="{% url 'password_change' %}">
+						<button>Change Password</button>
+					</a>
+				</div>
+            </div>
+			{% endif %}
+		</div>
+		<h1 style="margin-bottom: 0;" class="left-anime">About Me</h1>
+		<p style="margin-top: 0;" id="down-drop" class="preformatted">
+			{{ member.aboutme|default:empty }}
+		</p>
+	</div>
+	<div id="top-drop" class="nav-anchor">
+		{% if user.is_authenticated and is_owner %}
+			<p><strong><a href="{% url 'member_hive' member.id %}">Open Your Hive</a></strong></p>
+		{% else %}
+			<p><strong><a href="{% url 'member_hive' member.id %}">Open {{ member.first_name|capfirst }}'s Hive</a></strong></p>
+		{% endif %}
+		<p>Number of Articles: {{ member.articles.all.count|default:empty }}</p>
+		<p>Rating: {{ profile.rating|default:empty }}</p>
+		<p>Followers: {{ profile.followers|default:empty }}</p>
+		<p>Phone {{ member.phone|default:empty }}</p>
+		<p>Email: {{ member.email|default:empty }}</p>
+		<p>Website: {{ member.website|default:empty }}</p>
+		<p>Member since: {{ member.date_joined|default:empty|date:"jS b, Y" }}</p>
+		<p>Last seen: {{ member.last_login|default:empty|date:"jS b, Y" }}</p>
+	</div>
+</section>
+{% endwith %}
+{% endblock section %}

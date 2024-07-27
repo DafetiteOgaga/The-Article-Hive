@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% comment %}
+<!-- {% load css_styler %} -->
+{% endcomment %}
+{% block section %}
+{% with "" as empty %}
+<section class="register">
+	<div id="top-drop" class="content">
+		<h1 class="right-anime">{{ updateprofile.title|default:empty }} {{ user.first_name|default:empty }}</h1>
+		<form id="form" class="form-register" action="" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div id="down-drop" class="">
+				<!-- <span class="required">*</span> -->
+				<span class="not-required">*</span>
+				<input id="first_name" name="first_name" type="text" value="{{ profile.first_name|default:empty }}">
+			</div>
+			<div id="down-drop" class="">
+				<span class="not-required">*</span>
+				<input id="last_name" name="last_name" type="text" placeholder="Last name (Optional)" value="{{ profile.last_name|default:empty }}">
+			</div>
+			<div id="down-drop" class="">
+				<span class="not-required">*</span>
+				<input id="middle_name" name="middle_name" type="text" placeholder="Middle name (Optional)" value="{{ profile.middle_name|default:empty }}">
+			</div>
+			<div id="down-drop" class="">
+				<span class="not-required">*</span>
+				<input id="phone" name="phone" type="tel" placeholder="Phone Number (Optional)" value="{{ profile.phone|default:empty }}">
+			</div>
+			<div id="down-drop" class="">
+				<span class="not-required">*</span>
+				<input id="website" name="website" type="text" placeholder="Website (Optional)" value="{{ profile.website|default:empty }}">
+			</div>
+			<div id="down-drop" class="">
+				<span class="not-required">*</span>
+				<textarea class="profile-update" id="aboutme" name="aboutme" placeholder="About Me" rows="4">{{ profile.aboutme|default:empty }}</textarea>
+			</div>
+			<div id="down-drop" class="">
+				<span class="not-required">*</span>
+				<hr>
+				<label for="profile_picture">Change Profile Photo</label>
+				<input id="profile_picture" name="profile_picture" type="file" accept="image/*">
+				<img id="selectedImage" src="#" alt="Profile Picture" width="100" style="display: none;">
+				<!-- {% if profile.profile_picture %}
+					<img src="{{ profile.profile_picture.url }}" alt="Profile Picture" width="100">
+				{% endif %} -->
+			</div>
+			<div>
+				<span class="not-required">*</span>
+				<div class="click-anime">
+					<button type="submit">Update Profile</button>
+				</div>
+			<!-- <p>Already a member? Login<a href="{% url 'login' %}">here</a></p> -->
+		</form>
+	</div>
+</section>
+{% endwith %}
+{% endblock section %}
+
