@@ -16,6 +16,21 @@ echo "##### activated virtual environment ..."
 echo ""
 sleep 2
 
+# install django
+django_version="$(django --version)"
+if [[ "$django_version" == *"command not found"* ]]; then
+	echo "installing django ..."
+	pip install django
+	echo "##### django installed ..."
+	sleep 2
+else
+	echo "##### django present ..."
+fi
+echo ""
+
+# # exit
+# exit 0
+
 # making and migrating migrations
 maka_and_migrate="$(find $HOME -name "manage.py")"
 echo "manage_py_file_path: $maka_and_migrate"
