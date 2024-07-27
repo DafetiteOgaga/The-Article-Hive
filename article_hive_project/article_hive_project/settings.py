@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-ks%dws4&%hgxe21a(9g+8dmp)9l(tq7k&w&s4cuz2=dy4joql^
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ALLOWED_HOSTS = [
-    'dafetite.pythonanywhere.com',
+    # 'dafetite.pythonanywhere.com',
     'dafe.pythonanywhere.com',
     'localhost',
     '127.0.0.1',
